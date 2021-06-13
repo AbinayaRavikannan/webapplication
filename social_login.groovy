@@ -11,6 +11,9 @@ pipeline {
        gitParameter(branch: '', branchFilter: '.*', defaultValue: 'master', description: 'enter the branch name', name: 'branch', quickFilterEnabled: false, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH')
        booleanParam(name: 'BUILD', defaultValue: true, description: 'Build the code')
     }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
     tools{
         jdk 'java_home'
         maven 'maven_home'
