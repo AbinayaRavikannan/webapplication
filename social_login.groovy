@@ -27,17 +27,21 @@ pipeline {
                 userRemoteConfigs: [[url: 'https://github.com/AbinayaRavikannan/webapplication.git']]])
         }
         }
-        stage('test case'){
-            steps{
-                echo "test case skipping"
-                echo "HELLO ${params.PERSON}"
-        }
-        }
-        stage('code quality'){
-            steps{
-                echo "test case skipping"
-        }
-        }
+        stage('Java Project'){
+            parallel {
+                stage('test case'){
+                    steps{
+                       echo "test case skipping"
+                       echo "HELLO ${params.PERSON}"
+                }
+                }
+                stage('code quality'){
+                    steps{
+                       echo "test case skipping"
+                }
+                }
+            }
+        }    
         stage('publish report'){
             steps{
                 echo "publish report skipping"
