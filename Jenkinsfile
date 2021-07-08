@@ -74,10 +74,16 @@ pipeline {
               script {
                   docker.withRegistry( '', registryCredential ) {
                      dockerImage.push()
-          }
+                  }
+              }
+           }
         }
-      }
-    }
+        stage('Deploy to k8s') {
+           steps{
+                sh "chmod +x launch.sh"
+                sh "./launch.sh ${BUILD_NUMBER}"
+           }
+        }
     } 
     post {
         always {
