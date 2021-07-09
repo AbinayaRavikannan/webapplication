@@ -12,7 +12,7 @@ pipeline {
        booleanParam(name: 'BUILD', defaultValue: true, description: 'Build the code')
     }
     options {
-        timeout(time: 2, unit: 'MINUTES') 
+        //timeout(time: 2, unit: 'MINUTES') 
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     tools{
@@ -83,12 +83,12 @@ pipeline {
                 sh "chmod +x launch.sh"
                 sh "./launch.sh ${BUILD_NUMBER}"
                 sshagent(['MINIKUBE']) {
-                   sh "scp -o StrictHostKeyChecking=no services.yml myapp-deployment.yml ubuntu@18.221.58.39:/root"
+                   sh "scp -o StrictHostKeyChecking=no services.yml myapp-deployment.yml ubuntu@18.218.123.34:/root"
                     script{
                         try{
-                            sh "ssh ubuntu@18.221.58.39 kubectl -f apply ."
+                            sh "ssh ubuntu@18.218.123.34 kubectl -f apply ."
                         }catch(error){
-                            sh "ssh ubuntu@18.221.58.39 kubectl -f create ."
+                            sh "ssh ubuntu@18.218.123.34 kubectl -f create ."
                         }   
                     }    
                 }
