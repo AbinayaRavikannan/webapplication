@@ -82,6 +82,16 @@ pipeline {
            steps{
                 sh "chmod +x launch.sh"
                 sh "./launch.sh ${BUILD_NUMBER}"
+                sshagent(['MINIKUBE']) {
+                   sh "scp -o StrictHostKeyChecking=no services.yml deployment.yml ubuntu@18.221.58.39:/home/ubuntu"
+                    script{
+                        try{
+                            sh "ssh ubuntu@18.221.58.39 kubectl -f apply ."
+                        }catch(error){
+                            sh "ssh ubuntu@18.221.58.39 kubectl -f create ."
+                        }   
+                    }    
+                }
            }
         }
     } 
