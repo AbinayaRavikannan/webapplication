@@ -1,4 +1,4 @@
-FROM FROM centos:centos7
+FROM centos:centos7
 MAINTAINER abi
 ENV CATALINA_HOME /opt/tomcat
 # Install Java
