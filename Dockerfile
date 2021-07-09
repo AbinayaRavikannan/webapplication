@@ -1,5 +1,10 @@
 FROM centos:centos7
 MAINTAINER abi
+# Install prepare infrastructure
+RUN yum -y update && \
+ yum -y install wget && \
+ yum -y install tar
+ 
 ENV CATALINA_HOME /opt/tomcat
 # Install Java
 RUN yum -y install java
