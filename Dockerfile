@@ -11,8 +11,9 @@ RUN yum -y install java
 # Install Java
 RUN yum -y install maven
 WORKDIR /opt/tomcat
-RUN curl -O https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40.tar.gz
-RUN tar zxvf apache*.tar.gz
+#RUN curl -O https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40.tar.gz
+#RUN tar zxvf apache*.tar.gz
+RUN yum -y install tomcat8
 RUN mv apache-tomcat-8.5.40/* /opt/tomcat/.
 COPY target/java-tomcat-maven-example.war /opt/tomcat/webapps
 #EXPOSE 8080
