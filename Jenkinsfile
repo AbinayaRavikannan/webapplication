@@ -83,7 +83,7 @@ pipeline {
                 sh "chmod +x launch.sh"
                 sh "./launch.sh ${BUILD_NUMBER}"
                 sshagent(['']) {
-                   sh "scp -o StrictHostKeyChecking=no services.yml myapp-deployment.yml ubuntu@3.129.17.36:/home/ubuntu"
+                   //sh "scp -o StrictHostKeyChecking=no services.yml myapp-deployment.yml ubuntu@3.129.17.36:/home/ubuntu"
                    sh "ssh ubuntu@3.129.17.36"
                     /*script{
                         try{
