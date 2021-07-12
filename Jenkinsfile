@@ -83,8 +83,8 @@ pipeline {
                 sh "chmod +x launch.sh"
                 sh "./launch.sh ${BUILD_NUMBER}"
                 sshagent(['']) {
-                   sh "scp -o StrictHostKeyChecking=no services.yml myapp-deployment.yml abinaya@3.129.17.36:/home/ubuntu"
-                   sh "ssh abinaya@3.129.17.36"
+                   sh "scp -o StrictHostKeyChecking=no services.yml myapp-deployment.yml ubuntu@3.129.17.36:/home/ubuntu"
+                   sh "ssh ubuntu@3.129.17.36"
                     /*script{
                         try{
                             sh "ssh abinaya@3.129.17.36 kubectl -f apply ."
